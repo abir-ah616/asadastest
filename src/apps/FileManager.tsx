@@ -31,6 +31,24 @@ const processAssets = (modules: Record<string, unknown>, type: 'image' | 'video'
 const images = processAssets(imageModules, 'image');
 const videos = processAssets(videoModules, 'video');
 
+import collectedImagesJson from '../assets/images/collected/images.json?raw';
+import collectedVideosJson from '../assets/videos/collected/videos.json?raw';
+
+// Parse collected assets
+const collectedImages = JSON.parse(collectedImagesJson).map((img: any, index: number) => ({
+    id: `collected-image-${index}`,
+    name: img.name,
+    type: 'image',
+    content: img.link
+}));
+
+const collectedVideos = JSON.parse(collectedVideosJson).map((vid: any, index: number) => ({
+    id: `collected-video-${index}`,
+    name: vid.name,
+    type: 'video',
+    content: vid.link
+}));
+
 const initialFileSystem: FileSystemItem[] = [
     {
         id: 'root',
@@ -41,13 +59,29 @@ const initialFileSystem: FileSystemItem[] = [
                 id: 'pictures',
                 name: 'Pictures',
                 type: 'folder',
-                children: images
+                children: [
+                    {
+                        id: 'collected-images',
+                        name: 'Collected',
+                        type: 'folder',
+                        children: collectedImages
+                    },
+                    ...images
+                ]
             },
             {
                 id: 'videos',
                 name: 'Videos',
                 type: 'folder',
-                children: videos
+                children: [
+                    {
+                        id: 'collected-videos',
+                        name: 'Collected',
+                        type: 'folder',
+                        children: collectedVideos
+                    },
+                    ...videos
+                ]
             }
         ]
     }
@@ -192,7 +226,8 @@ export const FileManager = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
-                    gap: '16px'
+                    gap: '16px',
+                    alignItems: 'start'
                 }}>
                     {filteredChildren.map(item => (
                         <div

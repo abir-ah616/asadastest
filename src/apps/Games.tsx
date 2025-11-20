@@ -1,17 +1,26 @@
 
 
+// Import game images
+import freefire from '../assets/games/freefire.jpg';
+import brawlhalla from '../assets/games/brawlhalla.jpg';
+import genshin from '../assets/games/genshin.jpg';
+import gtav from '../assets/games/gtav.jpg';
+import starrail from '../assets/games/starrail.jpg';
+import wuwa from '../assets/games/wuwa.jpg';
+
 export const Games = () => {
     const games = [
-        { name: 'GTA V : ONLINE', platform: 'PC', image: 'https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=2600&auto=format&fit=crop' },
-        { name: 'Free Fire', platform: 'Mobile/PC', image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2670&auto=format&fit=crop' },
-        { name: 'Genshin Impact', platform: 'Mobile/PC', image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2765&auto=format&fit=crop' },
-        { name: 'Wuthering Waves', platform: 'Mobile/PC', image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2671&auto=format&fit=crop' },
-        { name: 'Honkai Star Rail', platform: 'Mobile/PC', image: 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?q=80&w=2574&auto=format&fit=crop' },
-        { name: 'Brawlhalla', platform: 'Mobile/PC', image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=2694&auto=format&fit=crop' },
+        { name: 'GTA V : ONLINE', platform: 'PC', image: gtav },
+        { name: 'Free Fire', platform: 'Mobile/PC', image: freefire },
+        { name: 'Genshin Impact', platform: 'Mobile/PC', image: genshin },
+        { name: 'Wuthering Waves', platform: 'Mobile/PC', image: wuwa },
+        { name: 'Honkai Star Rail', platform: 'Mobile/PC', image: starrail },
+        { name: 'Brawlhalla', platform: 'Mobile/PC', image: brawlhalla },
     ];
 
     return (
         <div style={{ padding: '20px', color: 'white', height: '100%', overflowY: 'auto' }}>
+            <h2 style={{ fontSize: '24px', marginBottom: '20px' }}>Games I Play</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
                 {games.map((game, index) => (
                     <div key={index} style={{
